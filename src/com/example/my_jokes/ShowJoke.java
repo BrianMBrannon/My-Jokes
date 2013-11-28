@@ -17,9 +17,10 @@ public class ShowJoke extends Activity {
 		
 		Intent intent = getIntent();
 		String joke = intent.getStringExtra(MainActivity.MY_JOKE);
+		String jokeNumber = intent.getStringExtra(MainActivity.MY_JOKE_NUMBER);
 		
 		jokeTextView = (TextView) findViewById(R.id.jokeTextView);
-		jokeTextView.setText(joke);
+		jokeTextView.setText(jokeNumber + ": " + joke);
 		jokeTextView.setTextSize(32);
 	}
 

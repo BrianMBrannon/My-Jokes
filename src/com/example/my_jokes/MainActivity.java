@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 public class MainActivity extends Activity {
 	public final static String MY_JOKE = "com.example.myjokes.JOKE";
+	public final static String MY_JOKE_NUMBER = "com.example.myjokes.JOKENUMBER";
 	private Button submitJokeButton;
 	private FileOutputStream fos;
 	private FileInputStream fis;
@@ -78,7 +79,8 @@ public class MainActivity extends Activity {
 		fos.write(joke.getBytes());
 		
 		Intent intent = new Intent(this, ShowJoke.class);
-		intent.putExtra(MY_JOKE, Integer.toString(writeTo));
+		intent.putExtra(MY_JOKE_NUMBER, Integer.toString(writeTo));
+		intent.putExtra(MY_JOKE, joke);
 		startActivity(intent);
 	}
 }
