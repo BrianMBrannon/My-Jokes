@@ -9,5 +9,6 @@
     <string name="submitJokeText">Submit</string>
     <string name="title_activity_show_joke">ShowJoke</string>
     <string name="showJoke">How funny!</string>
-
+    <string name="splash">MY JOKES</string>
+	<string name="title_activity_splash">Splash</string>
 </resources>
