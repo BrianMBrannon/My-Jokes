@@ -15,7 +15,7 @@ public class Splash extends Activity {
 		Thread timeout = new Thread() {
 			public void run() {
 				try {
-					sleep(2500);
+					sleep(1000);
 				}
 				catch (InterruptedException e){
 					e.printStackTrace();

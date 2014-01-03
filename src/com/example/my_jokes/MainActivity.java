@@ -2,19 +2,19 @@ package com.example.my_jokes;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	public final static String MY_JOKE = "com.example.myjokes.JOKE";
@@ -23,6 +23,8 @@ public class MainActivity extends Activity {
 	private Button submitJokeButton;
 	private FileOutputStream fos;
 	private FileInputStream fis;
+	EditText mainEditText;
+	EditText answerEditText;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -36,6 +38,9 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+		
+		mainEditText = (EditText) findViewById(R.id.mainEdit);
+		answerEditText = (EditText) findViewById(R.id.answerEdit);
 	}
 
 	@Override
@@ -83,12 +88,13 @@ public class MainActivity extends Activity {
 	}
 	
 	public void sendJoke(View v) throws IOException {
-		EditText mainEditText = (EditText) findViewById(R.id.mainEdit);
 		String joke = mainEditText.getText().toString();
+		String answer = answerEditText.getText().toString();
+		String submission = "\n" + time() + "\n" + joke + "\n" + answer;
 		//int writeTo = getJokeNumber(MY_FILE);
 		//String line = writeTo + ": " + joke;
 		fos = openFileOutput(MY_FILE, MODE_APPEND);
-		fos.write(joke.getBytes());
+		fos.write(submission.getBytes());
 		fos.close();
 		
 		Intent intent = new Intent(this, ShowJoke.class);
@@ -96,4 +102,21 @@ public class MainActivity extends Activity {
 		//intent.putExtra(MY_JOKE, joke);
 		startActivity(intent);
 	}
+	
+	public String time() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
+		return sdf.format(new Date(System.currentTimeMillis()));
+	}
+
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		
+		mainEditText.setText((CharSequence) findViewById(R.string.mainEditText));
+		answerEditText.setText((CharSequence) findViewById(R.string.answerEditText));
+	}
+	
+	
 }
