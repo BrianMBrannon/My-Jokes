@@ -45,7 +45,7 @@ public class ShowJoke extends Activity {
 				listItems.add(line);
 			}
 			
-			adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
+			adapter = new JokeListViewAdapter(this, R.layout.custom_row, listItems);
 			listView.setAdapter(adapter);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -90,7 +90,7 @@ public class MainActivity extends Activity {
 	public void sendJoke(View v) throws IOException {
 		String joke = mainEditText.getText().toString();
 		String answer = answerEditText.getText().toString();
-		String submission = "\n" + time() + "\n" + joke + "\n" + answer;
+		String submission = time() + "\n" + joke + "\n" + answer + "\n";
 		//int writeTo = getJokeNumber(MY_FILE);
 		//String line = writeTo + ": " + joke;
 		fos = openFileOutput(MY_FILE, MODE_APPEND);
@@ -100,6 +100,11 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, ShowJoke.class);
 		//intent.putExtra(MY_JOKE_NUMBER, Integer.toString(writeTo));
 		//intent.putExtra(MY_JOKE, joke);
+		startActivity(intent);
+	}
+	
+	public void toJokes(View v) {
+		Intent intent = new Intent(this, ShowJoke.class);
 		startActivity(intent);
 	}
 	
